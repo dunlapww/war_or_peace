@@ -23,6 +23,7 @@ class DeckTest < Minitest::Test
   def test_rank_of_card_at
     assert_equal 12, @deck.rank_of_card_at(0)
     assert_equal 14, @deck.rank_of_card_at(2)
+    assert_equal 0, @deck.rank_of_card_at(99)
   end
 
   def test_high_ranking_cards
@@ -32,6 +33,16 @@ class DeckTest < Minitest::Test
   def test_percent_high_ranking
     assert_equal 66.67, @deck.percent_high_ranking
   end
+
+  def test_remove_card
+
+    assert_equal @card1, @deck.remove_card
+    assert_equal @card2, @deck.remove_card
+    assert_equal @card3, @deck.remove_card
+    assert_equal [], @deck.cards
+    assert_equal nil, @deck.remove_card
+  end
+
 
   def test_remove_add_and_high_ranking
 

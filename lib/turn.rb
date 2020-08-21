@@ -8,9 +8,13 @@ class Turn
   end
 
   def type
-    return :basic if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
-
-    @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2) ? :mutually_assured_destruction : :war
+    if @player1.deck.rank_of_card_at(0) != @player2.deck.rank_of_card_at(0)
+      return :basic
+    elsif @player1.deck.rank_of_card_at(2) == @player2.deck.rank_of_card_at(2)
+      return :mutually_assured_destruction
+    else
+      return :war
+    end
   end
 
   def winner
@@ -25,25 +29,25 @@ class Turn
   end
 
   def pile_cards
-    case self.type
-      when :basic
+
+    if type == :basic
+      @spoils_of_war << @player1.deck.remove_card
+      @spoils_of_war << @player2.deck.remove_card
+    else
+      3.times do
         @spoils_of_war << @player1.deck.remove_card
         @spoils_of_war << @player2.deck.remove_card
-      when :war
-        3.times do
-          @spoils_of_war << @player1.deck.remove_card
-          @spoils_of_war << @player2.deck.remove_card
-        end
-      when :mutually_assured_destruction
-        3.times do
-          @player1.deck.remove_card
-          @player2.deck.remove_card
-        end
+      end
     end
+    #remove any potential nils from spoils_of_war (due to player with low deck)
+    @spoils_of_war = @spoils_of_war.grep(Card)
+
   end
 
   def award_spoils(winner)
-    winner.deck.cards.concat(@spoils_of_war) if winner != "No Winner"
+    if winner == @player1 || winner == @player2
+      winner.deck.cards.concat(@spoils_of_war)
+    end
   end
 
 end

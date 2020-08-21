@@ -28,24 +28,24 @@ class Game
 
       print " - Alex Deck: #{turn.player1.deck.cards.size}, Ghengis Deck: #{turn.player2.deck.cards.size} ---"
 
-
       #determine who is winner of this hand before removing cards from decks
+      hand_type = turn.type
       hand_winner = turn.winner
-
-      #print the outcome of the turn (need to print outcome before removing cards from deck because turn.type determined by current deck)
-      if turn.type == :war
-        print "WAR - #{hand_winner.name} won 6 cards\n"
-      elsif turn.type == :mutually_assured_destruction
-        print "*mutually assured destruction* 6 cards removed from play\n"
-      else
-        print "#{hand_winner.name} won 2 cards\n"
-      end
 
       #remove cards from deck based on turn type
       turn.pile_cards
 
+      #print the outcome of the turn
+      if hand_type == :war
+        print "WAR - #{hand_winner.name} won #{turn.spoils_of_war.size} cards\n"
+      elsif hand_type == :mutually_assured_destruction
+        print "*mutually assured destruction* #{turn.spoils_of_war.size} cards removed from play\n"
+      else
+        print "#{hand_winner.name} won #{turn.spoils_of_war.size} cards\n"
+      end
+
       #give cards to winner of hand
-      turn.award_spoils(hand_winner)
+      turn.award_spoils(hand_winner) if hand_type != :mutually_assured_destruction
 
 
     end #end until loop
