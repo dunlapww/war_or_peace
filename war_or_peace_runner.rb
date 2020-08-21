@@ -6,10 +6,10 @@ require './lib/game'
 
 #variables to setup a standard deck of 52 cards
 card_values = %w(2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King, Ace)
-card_ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-card_hash = card_values.zip(card_ranks).to_h
-suits = %i(hearts, clubs, diamonds, spaids)
-full_deck = []
+card_ranks  = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+card_hash   = card_values.zip(card_ranks).to_h
+suits       = %i(hearts, clubs, diamonds, spaids)
+full_deck   = []
 
 #create standard deck of 52 cards
 suits.each do |suit|
