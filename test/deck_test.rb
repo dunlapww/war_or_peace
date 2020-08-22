@@ -15,6 +15,10 @@ class DeckTest < Minitest::Test
     @deck = Deck.new(@cards)
   end
 
+  def test_deck_has_default_of_no_cards
+    deck = Deck.new()
+    assert_equal [], deck.cards
+  end
 
   def test_deck_can_contain_cards
     assert_equal @cards, @deck.cards
