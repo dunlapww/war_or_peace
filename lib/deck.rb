@@ -27,7 +27,7 @@ class Deck
   end
 
   def generate_standard_deck
-    card_suits        = [:hearts, :clubs, :diamonds, :spaids]
+    card_suits = [:hearts, :clubs, :diamonds, :spaids]
     card_values_ranks = {
       "2"    =>2,
       "3"    =>3,
@@ -50,6 +50,7 @@ class Deck
         @cards << Card.new(suit,value,rank)
       end
     end
+
 
   end
 
