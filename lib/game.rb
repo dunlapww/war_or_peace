@@ -41,13 +41,15 @@ class Game
     deck2 = Deck.new(whole_deck.cards)
 
     #create two players
-    print "Enter player1 name: "
-    player1_name = gets.chomp.capitalize
-    player1 = Player.new(player1_name,deck1)
+    print "Enter player1 name [Alex]: "
+    player1_name = gets
+    player1_name = "Alex" if player1_name == "\n"
+    player1 = Player.new(player1_name.chomp.capitalize,deck1)
 
-    print "Enter player2 name: "
-    player2_name = gets.chomp.capitalize
-    player2 = Player.new(player2_name,deck2)
+    print "Enter player2 name [Ghengis]: "
+    player2_name = gets
+    player2_name = "Ghengis" if player2_name == "\n"
+    player2 = Player.new(player2_name.chomp.capitalize,deck2)
 
     #print start of game message to screen
     puts "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are #{player1.name} and #{player2.name}.\nType 'GO' to start the game!\n"
