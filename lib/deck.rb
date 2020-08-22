@@ -2,7 +2,7 @@ class Deck
   attr_reader :cards
 
   #initialize takes an array of Cards
-  def initialize(cards)
+  def initialize(cards = [])
     @cards = cards
   end
 
@@ -19,11 +19,39 @@ class Deck
   end
 
   def remove_card
-    @cards.shift if @cards.size > 0
+    @cards.shift
   end
 
   def add_card(card)
     @cards.push(card)
+  end
+
+  def generate_standard_deck
+    card_suits = [:hearts, :clubs, :diamonds, :spaids]
+    card_values_ranks = {
+      "2"    =>2,
+      "3"    =>3,
+      "4"    =>4,
+      "5"    =>5,
+      "6"    =>6,
+      "7"    =>7,
+      "8"    =>8,
+      "9"    =>9,
+      "10"   =>10,
+      "Jack" =>11,
+      "Queen"=>12,
+      "King" =>13,
+      "Ace"  =>14
+    }
+
+    @cards = []
+    card_suits.each do |suit|
+      card_values_ranks.each do |value,rank|
+        @cards << Card.new(suit,value,rank)
+      end
+    end
+
+
   end
 
 end

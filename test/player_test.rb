@@ -27,10 +27,16 @@ class PlayerTest < Minitest::Test
   end
 
   def test_player_has_lost?
-    refute @player.has_lost?
+    deck = Deck.new(@cards)
+    player = Player.new("Harry",deck)
+    refute player.has_lost?
+
+    deck = Deck.new()
+    player2 = Player.new("Sally",deck)
+    assert player2.has_lost?
   end
 
-  def test_player_has_lost_when_no_more_cards
+  def test_player_has_lost_only_when_no_more_cards
     assert_equal @card1, @player.deck.remove_card
     refute @player.has_lost?
     assert_equal @card2, @player.deck.remove_card
