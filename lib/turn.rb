@@ -44,10 +44,8 @@ class Turn
 
   end
 
-  def award_spoils(winner)
-    if winner == @player1 || winner == @player2
-      winner.deck.cards.concat(@spoils_of_war)
-    end
+  def award_spoils(winning_player)
+    winning_player.deck.cards.concat(@spoils_of_war)
   end
 
 end

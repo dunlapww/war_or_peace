@@ -70,12 +70,10 @@ class Game
       turn = Turn.new(player1,player2)
       print "Turn #{turn_count}: "
 
-      #determine who is winner of this hand before removing cards from decks
+      #store turn type and who won the hand before removing cards from decks
       hand_type = turn.type
       hand_winner = turn.winner
-      if hand_type == :mutually_assured_destruction
-        require "pry"; binding.pry
-      end
+
       #remove cards from deck
       turn.pile_cards
 
@@ -83,7 +81,9 @@ class Game
       print turn_note(hand_type,hand_winner,turn)
 
       #give cards to winner of hand
-      turn.award_spoils(hand_winner) if hand_type != :mutually_assured_destruction
+      if hand_winner.class == Player && hand_type != :mutually_assured_destruction
+        turn.award_spoils(hand_winner)
+      end
 
     end #end until loop
 
