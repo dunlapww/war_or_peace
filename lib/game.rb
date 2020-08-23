@@ -17,11 +17,11 @@ class Game
     end
   end
 
-  def end_game_note(turn_count,hand_winner)
+  def end_game_note(turn_count, player1, player2)
     if turn_count == 1000000
       return "---- DRAW ----"
     else
-      return "*-*-*-* #{hand_winner.name} has won the game! *-*-*-*"
+      return "*-*-*-* #{player1.deck.cards == [] ? player2.name : player1.name} has won the game! *-*-*-*"
     end
   end
 
@@ -88,7 +88,7 @@ class Game
     end #end until loop
 
     #print end game message
-    print end_game_note(turn_count, hand_winner)
+    print end_game_note(turn_count, player1, player2)
 
   end
 end

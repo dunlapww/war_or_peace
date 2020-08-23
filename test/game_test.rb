@@ -35,16 +35,19 @@ class GameTest < Minitest::Test
 
   def test_end_game_note
     game = Game.new()
-    deck = Deck.new()
-    deck.generate_standard_deck
+    full_deck = Deck.new()
+    full_deck.generate_standard_deck
+    empty_deck = Deck.new()
 
-    hand_winner = Player.new("Alex",deck)
+    player1 = Player.new("Alex",full_deck)
+    player2 = Player.new("Sally",empty_deck)
 
     turn_count = 1000000
-    assert_equal "---- DRAW ----", game.end_game_note(turn_count,hand_winner)
+    assert_equal "---- DRAW ----", game.end_game_note(turn_count,player1, player2)
 
     turn_count = 700
-    assert_equal "*-*-*-* #{hand_winner.name} has won the game! *-*-*-*", game.end_game_note(turn_count, hand_winner)
+    assert_equal "*-*-*-* Alex has won the game! *-*-*-*", game.end_game_note(turn_count, player1, player2)
+
   end
 
 end
