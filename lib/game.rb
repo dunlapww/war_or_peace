@@ -52,7 +52,9 @@ class Game
     player2 = Player.new(player2_name.chomp.capitalize,deck2)
 
     #print start of game message to screen
-    puts "Welcome to War! (or Peace) This game will be played with 52 cards.\nThe players today are #{player1.name} and #{player2.name}.\nType 'GO' to start the game!\n"
+    puts "Welcome to War! (or Peace) This game will be played with 52 cards."
+    puts "The players today are #{player1.name} and #{player2.name}."
+    puts "Type 'GO' to start the game!"
 
     #require user to type go to begin game
     until gets.chomp.upcase == "GO" do
@@ -71,7 +73,9 @@ class Game
       #determine who is winner of this hand before removing cards from decks
       hand_type = turn.type
       hand_winner = turn.winner
-
+      if hand_type == :mutually_assured_destruction
+        require "pry"; binding.pry
+      end
       #remove cards from deck
       turn.pile_cards
 

@@ -21,7 +21,8 @@ class GameTest < Minitest::Test
     turn.pile_cards
 
     hand_type = :war
-    assert_equal "WAR - #{hand_winner.name} won #{turn.spoils_of_war.size} cards\n", game.turn_note(hand_type, hand_winner, turn)
+    assert_equal "WAR - #{hand_winner.name} won #{turn.spoils_of_war.size} cards\n",
+    game.turn_note(hand_type, hand_winner, turn)
 
 
     hand_type = :mutually_assured_destruction
@@ -33,8 +34,11 @@ class GameTest < Minitest::Test
   end
 
   def test_end_game_note
-    game = Game.new()    game.get_standard_deck
-    hand_winner = Player.new("Alex",game.whole_deck)
+    game = Game.new()
+    deck = Deck.new()
+    deck.generate_standard_deck
+
+    hand_winner = Player.new("Alex",deck)
 
     turn_count = 1000000
     assert_equal "---- DRAW ----", game.end_game_note(turn_count,hand_winner)
